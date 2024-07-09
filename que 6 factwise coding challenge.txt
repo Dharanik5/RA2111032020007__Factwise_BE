@@ -1,0 +1,45 @@
+#include <iostream>
+#include <string>
+#include <unordered_map>
+using namespace std;
+string NumtoWords(int num){
+unordered_map<int,string>below20={
+{1,"one"},{2,"two"},{3,"three"},{4,"four"},{5,"five"},{6,"six"},{7,"seven"},{8,"eight"},{9,"nine"},{10,"ten"},{11,"eleven"},{12,"twelve"},{13,"thirteen"},
+{14,"fourteen"},{15,"fifteen"},{16,"sixteen"},{17,"seventeen"},{18,"eighteen"},{19,"nineteen"}};
+unordered_map<int,string>tens={
+{20,"twenty"},{30,"thirty"},{40,"fourty"},{50,"fifty"},{60,"sixty"},{70,"seventy"},{80,"eighty"},{90,"ninety"}};
+if(num<20){
+return below20[num];
+}
+else if(num<100){
+int ten=num/10*10;
+int unit=num%10;
+return tens[ten]+(unit ?" " +below20[unit]:"");
+else if(num<1000){
+int hundred+num/100;
+int rem=num%100;
+return below20[hundred]+"hundred"+(rem ?"and"+NumtoWords(rem):"");
+}
+else{
+return "one thousand";
+}
+}
+int count(){
+int tot=0;
+for(int i=1;i<=1000;++i){
+string words=NumtoWords(I);
+string cleaned;
+for(char c:words){
+if(c!='' &&c!='-'){
+cleaned+=c;
+}
+}
+total+=cleaned;
+}
+return total;
+}
+int main(){
+int res=count();
+cout<<"total letters used are: "<<res<<endl;
+return 0;
+}
