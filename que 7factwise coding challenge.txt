@@ -1,0 +1,38 @@
+#include <iostream>
+#include <vector>
+#include <climits>
+using namespace std;
+
+int score(vector<int>& cardPoints,int k){
+int n=cardPoints.size();
+int total=0;
+for(int i=0;i<n;i++){
+total+=cardPoints[i];
+}
+int windowSize=n-k;
+int minPoints=INT_MAX;
+int WindowPoints=0;
+for(int i=0;i<windowSize;i++){
+ WindowPoints+=cardPoints[i];
+}
+minPoints=min(minPoints,WindowPoints);
+
+for(int i=windowSize;i<n;i++){
+windowPoints=windowPoints-cardPoints[i-windowSize]+cardPoints[i];
+minPoints=min(minPoints,WindowPoints);
+
+return total-minPoints;
+
+}
+
+int main(){
+vector<int>cardPoints;
+for(int i=0;i<cardPoints.size();i++){
+     cin>>cardPoints[i];
+}
+int k;
+cin>>k;
+int res=score(cardPoints,k);
+cout<<"Maximum score:"<<res<<endl;
+return 0;
+}
